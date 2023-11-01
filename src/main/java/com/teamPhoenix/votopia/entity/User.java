@@ -48,7 +48,7 @@ public class User implements UserDetails {
 
     @Lob
     @Basic(fetch = FetchType.LAZY)
-    @Column(nullable = false, columnDefinition = "LONGBLOB")
+    @Column(nullable = true, columnDefinition = "LONGBLOB")
     private byte[] profilePicture;
 
     @Transient
@@ -57,7 +57,7 @@ public class User implements UserDetails {
     @Transient
     private String fullName;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     @JoinTable(
             name = "users_roles",
             joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},

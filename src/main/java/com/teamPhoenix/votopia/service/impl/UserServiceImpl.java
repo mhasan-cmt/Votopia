@@ -34,6 +34,11 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(mapToEntity(user));
     }
 
+    @Override
+    public User save(User user) {
+        return userRepository.save(user);
+    }
+
     private User mapToEntity(UserDto userDto){
         User user = new User();
         user.setId(userDto.getId());
