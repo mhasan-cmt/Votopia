@@ -24,12 +24,6 @@ public class AuthController {
 
     private final VoterIdentificationService voterIdentificationService;
 
-    @GetMapping("/")
-    public String home(Model model, Authentication authentication, @AuthenticationPrincipal User userDetails) {
-        model.addAttribute("user", userDetails);
-        return "index";
-    }
-
 
     @GetMapping("/login")
     public String loginForm() {

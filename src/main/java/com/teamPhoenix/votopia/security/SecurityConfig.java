@@ -23,6 +23,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
+    private final String[] whiteListUrls = {"/login", "/register", "/register/save"};
 
     /**
      * This method is used to configure the password encoder.
@@ -45,7 +46,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorize) ->
-                        authorize.anyRequest().permitAll()
+                        authorize
+                                .requestMatchers(whiteListUrls).permitAll()
+                                .anyRequest().authenticated()
                 )
                 .formLogin(
                         form -> form
@@ -59,7 +62,7 @@ public class SecurityConfig {
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                 .permitAll()
                 )
-                .csrf().disable(); // Disable CSRF protection
+                .csrf().disable();
 
         return http.build();
     }
