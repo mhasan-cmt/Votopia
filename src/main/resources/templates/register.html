@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Votopia | Voting System</title>
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/img/apple-touch-icon.png}">
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/img/favicon-32x32.png}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/img/favicon-16x16.png}">
+    <link rel="manifest" th:href="@{/img/site.webmanifest}">
+    <link rel="stylesheet"
+          th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css/}"/>
+    <link rel="stylesheet"
+          th:href="@{/webjars/font-awesome/6.2.0/css/all.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/datatables/1.10.19/css/jquery.dataTables.min.css}"/>
+    <link
+            rel="stylesheet"
+            href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
+    />
+    <link rel="stylesheet"
+          href="fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+    <link rel="stylesheet" th:href="@{/css/homestyle.css}"/>
+    <script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+</head>
+<body class="d-flex align-items-center justify-content-center" style="height: 100vh">
+<div>
+    <section class="signup mb-0">
+        <div class="container">
+            <div class="signup-content d-flex align-items-center justify-content-center">
+                <div class="signup-form">
+                    <h2 class="form-title">Create Account</h2>
+
+                    <div th:if="${param.success}">
+                        <div class="alert alert-info">You have successfully registered to The Voting System</div>
+                    </div>
+                    <form class="register-form"
+                          id="register-form" method="post" role="form" th:action="@{/register/save}" enctype="multipart/form-data" th:object="${user}">
+                        <div class="form-group">
+                            <label for="firstname"><i
+                                    class="zmdi zmdi-account material-icons-name"></i></label> <input
+                                type="text" name="firstname" placeholder="First Name" id="firstName"
+                                th:field="*{firstName}" required/>
+                            <p th:errors="*{firstName}" class="text-danger"
+                               th:if="${#fields.hasErrors('firstName')}">
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname"><i
+                                    class="zmdi zmdi-account material-icons-name"></i></label> <input
+                                th:field="*{lastName}"
+                                type="text" name="lastname" required id="lastname" placeholder="Last Name"/>
+                            <p th:errors="*{lastName}" class="text-danger"
+                               th:if="${#fields.hasErrors('lastName')}">
+                            </p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="voterIdentification"><i
+                                    class="zmdi zmdi-account material-icons-name"></i></label> <input
+                                type="text" th:field="*{voterIdentification}" name="voterIdentification"
+                                id="voterIdentification" placeholder="Voter Identification Number"/>
+                            <p th:errors="*{voterIdentification}" class="text-danger"
+                               th:if="${#fields.hasErrors('voterIdentification')}">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="email"><i class="zmdi zmdi-email"></i></label> <input
+                                type="email" name="email" required th:field="*{email}" id="email" placeholder="Your Email" />
+                            <p th:errors="*{email}" class="text-danger"
+                               th:if="${#fields.hasErrors('email')}">
+                            </p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pass"><i class="zmdi zmdi-lock"></i></label> <input
+                                type="password" name="pass" required th:field="*{password}" id="pass" placeholder="Password" />
+                            <p th:errors="*{password}" class="text-danger"
+                               th:if="${#fields.hasErrors('password')}">
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label for="re_pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                            <input type="password" name="re_pass" id="re_pass"
+                                   required
+                                   th:field="*{confirmPassword}"
+                                   placeholder="Repeat your password" />
+                            <p th:errors="*{confirmPassword}" class="text-danger"
+                               th:if="${#fields.hasErrors('confirmPassword')}">
+                            </p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone"><i class="zmdi zmdi-lock-outline"></i></label>
+                            <input type="text" name="phone" id="phone"
+                                   th:field="*{phone}"
+                                   required
+                                   placeholder="Enter your phone number" />
+                            <p th:errors="*{phone}" class="text-danger"
+                               th:if="${#fields.hasErrors('phone')}">
+                            </p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="profilePicture"><i class="zmdi zmdi-lock-outline"></i></label>
+                            <input type="file"
+                                   id="profilePicture"
+                                   name="profilePicture"
+                                   required
+                                   th:field="*{profilePicture}"
+                                   placeholder="Enter your phone number" />
+                            <p th:errors="*{profilePicture}" class="text-danger"
+                               th:if="${#fields.hasErrors('profilePicture')}">
+                            </p>
+                        </div>
+
+                        <div class=" mb-3">
+                            <img id="preview-image" src="#" style="width: 100px; height: 100px;display: none;"/>
+                        </div>
+
+
+                        <div class="form-group">
+                            <input type="checkbox" name="agree-term" id="agree-term" hidden
+                                   class="agree-term"/> <label for="agree-term"
+                                                               class="label-agree-term"><span><span></span></span>I
+                            agree all statements in <a href="#" class="term-service">Terms
+                                of service</a></label>
+                        </div>
+
+                        <p> Already have an account? <a th:href="@{/login}" style="color: #498A33;"> LogIn </a> </p>
+
+
+                        <div class="form-group form-button">
+                            <input type="submit" name="signup" id="signup"
+                                   class="form-submit" value="REGISTER"/>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

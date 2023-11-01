@@ -15,7 +15,7 @@ public class ElectionServiceImpl implements ElectionService {
     private final ElectionRepository electionRepository;
     @Override
     public List<Election> getAll() {
-        return electionRepository.findAll();
+        return electionRepository.getAllElections();
     }
 
     @Override
@@ -24,6 +24,8 @@ public class ElectionServiceImpl implements ElectionService {
             election.setStatus(Status.Upcoming);
         }else if (election.getElectionEndDate().isBefore(LocalDateTime.now()) || election.getElectionEndDate().isEqual(LocalDateTime.now())) {
             election.setStatus(Status.Active);
+        }else if (election.getElectionStartDate().isAfter(election.getElectionEndDate())){
+            return null;
         }
         return electionRepository.save(election);
     }

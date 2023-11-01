@@ -39,10 +39,5 @@ public class ElectionController extends GenericController {
         return createResponse(election1, "Election added successfully", CREATED);
     }
 
-    @PostMapping("/test")
-    public String test(){
-        return "Hello World";
-    }
-
 
 }

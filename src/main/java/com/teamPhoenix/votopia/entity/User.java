@@ -42,6 +42,9 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String phone;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private VoterIdentification voterIdentification;
+
     @Lob
     @Basic(fetch = FetchType.LAZY)
     @Column(nullable = false, columnDefinition = "LONGBLOB")

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
+<body>
+<div layout:fragment="content">
+    <div>
+            <section>
+                <h3 class="section-head">Overview</h3>
+                <div class="analytics">
+                    <div class="analytic">
+                        <div class="analytic-icon">
+                            <span class="las la-chart-pie"></span>
+                        </div>
+                        <div class="analytic-info">
+                            <h4>Total Votes</h4>
+                            <h1>10.3M</h1>
+                        </div>
+                    </div>
+
+                    <div class="analytic">
+                        <div class="analytic-icon">
+                            <span class="las la-archive"></span>
+                        </div>
+                        <div class="analytic-info">
+                            <h4>Active Voters</h4>
+                            <h1>20.9K</h1>
+                        </div>
+                    </div>
+
+                    <div class="analytic">
+                        <div class="analytic-icon">
+                            <span class="las la-globe"></span>
+                        </div>
+                        <div class="analytic-info">
+                            <h4>Registered Voters</h4>
+                            <h1>90.5M</h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="block-grid">
+                    <div class="revenue-card">
+                        <h3 class="section-head">Total </h3>
+                        <div class="rev-content">
+                            <img src="img/vote.svg" alt="" />
+                            <div class="rev-info">
+                                <h3>LAGOS STATE</h3>
+
+                            </div>
+                            <div class="rev-sum">
+                                <h4>Total votes counted</h4>
+                                <h2>50,555</h2>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="graph-card">
+                    <h3 class="section-head">Graph</h3>
+                    <div class="graph-content">
+                        <div class="graph-head">
+                            <div class="icon-wrappers">
+                                <div class="icon">
+                                    <span class="las la-archive text-main"></span>
+                                </div>
+                                <div class="icon">
+                                    <span class="las la-calendar text-main"></span>
+                                </div>
+                            </div>
+                            <div class="graph-select">
+                                <select name="" id="">
+                                    <option value="">September</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="graph-board">
+                            <canvas id="revenueChart" width="100%" height="50%"></canvas>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+    </div>
+    <script>
+        Chart.defaults.global.defaultFontFamily = "Poppins";
+        let ctx = document.querySelector("#revenueChart");
+        ctx.height = 150;
+
+        let revChart = new Chart(ctx, {
+            type: "line",
+            data: {
+                lables: ["Sept 1", "Sept 3", "Sept 6", "Sept 9", "Sept 12", "Sept 15", "Sept 18","Sept 24","Sept 27", "Sept 30"],
+                datasets: [
+                    {
+                        label: "Views",
+                        borderColor: "green",
+                        borderWidth: "3",
+                        backgroundColor: "rgba(235, 247, 245, 0.5)",
+                        data:[0,30,60,25,60,25,50,10,50,90,120]
+                    },
+                    {
+                        label: "Views",
+                        borderColor: "blue",
+                        borderWidth: "3",
+                        backgroundColor: "rgba(233, 238, 253, 0.5)",
+                        data:[0,60,25,100,20,75,30,55,20,60,20]
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                tooltips: {
+                    intersect: false,
+                    node: "index",
+                }
+            }
+        });
+
+    </script>
+</div>
+</body>
+</html>
