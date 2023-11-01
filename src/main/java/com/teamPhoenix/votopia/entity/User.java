@@ -1,5 +1,6 @@
 package com.teamPhoenix.votopia.entity;
 
+import com.teamPhoenix.votopia.util.ImageUtil;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -51,6 +52,9 @@ public class User implements UserDetails {
     private byte[] profilePicture;
 
     @Transient
+    private String profilePictureBase64;
+
+    @Transient
     private String fullName;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -59,6 +63,11 @@ public class User implements UserDetails {
             joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")})
     private List<Role> roles = new ArrayList<>();
+
+    public String getProfilePictureBase64() {
+        profilePictureBase64 = ImageUtil.multipartToBase64(this.profilePicture);
+        return profilePictureBase64;
+    }
 
     public String getFullName() {
         String first[] = firstName.split(" ");

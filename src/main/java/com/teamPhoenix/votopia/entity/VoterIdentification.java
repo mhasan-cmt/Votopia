@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "national_identification")
+@Table(name = "voter_identification")
 @Getter
 @Setter
 public class VoterIdentification {
@@ -14,4 +14,6 @@ public class VoterIdentification {
     private Long id;
     @Column(name = "id_number")
     private String idNumber;
+    @OneToOne
+    private User user;
 }

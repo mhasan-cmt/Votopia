@@ -36,23 +36,24 @@
 <div class="sidebar" sec:authorize="isFullyAuthenticated()">
     <div class="sidebar-container">
         <div class="brand">
-            <h3>
-                <span class="lab la-accusoft"></span>
-                Vote
-            </h3>
+                <img th:src="@{/img/logo.png}" class="brand"/>
         </div>
 
         <div class="sidebar-avartar">
-            <div>
-<!--                src="/img/avatar.svg" th:src="@{'data:image/jpeg;base64,'+${#authentication.principal.profilePicture}}"-->
-                <img src="/img/avatar.svg"  alt="" />
+            <div class="avatar-image">
+                <img th:if="${#authentication.principal.profilePicture != null}"
+                     th:src="@{'data:image/jpeg;base64,' + ${#authentication.principal.getProfilePictureBase64()}}"
+                     alt="Profile Picture" />
+                <img th:unless="${#authentication.principal.profilePicture != null}"
+                     src="/img/avatar.svg"
+                     alt="Default Avatar" />
             </div>
+
             <div class="avartar-info ms-2">
                 <div class="avartar-text">
-                    <h4 sec:authentication="principal.firstName"></h4>
+                    <h4 sec:authentication="principal.fullName"></h4>
                     <div sec:authentication="name"></div>
                 </div>
-                <span class="las la-arrow-down"></span>
             </div>
         </div>
 
@@ -111,56 +112,8 @@
 
     </div>
 </div>
-<!-- Main Navigation -->
-<!--<div layout:fragment="header">-->
-<!--    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">-->
-<!--        <div class="container-fluid">-->
-<!--            <a class="navbar-brand" th:href="@{/}">Voting System</a>-->
-<!--            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"-->
-<!--                    data-bs-target="#navbarSupportedContent"-->
-<!--                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--                <span class="navbar-toggler-icon"></span>-->
-<!--            </button>-->
-<!--            <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-<!--                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">-->
-<!--                    <th:block sec:authorize="!isFullyAuthenticated()">-->
-<!--                        <li class="nav-item">-->
-<!--                            <i class="fas fa-user-lock"></i>-->
-<!--                            <a class="nav-link active" aria-current="page" th:href="@{/login}">Login</a>-->
-<!--                        </li>-->
-<!--                        <li class="nav-item">-->
-<!--                            <i class="fas fa-user-plus"></i>-->
-<!--                            <a class="nav-link active" aria-current="page" th:href="@{/register}">Register</a>-->
-<!--                        </li>-->
-<!--                    </th:block>-->
-<!--                    <th:block sec:authorize="isFullyAuthenticated()">-->
-<!--                        <li class="nav-item">-->
-<!--                            <form th:action="@{/logout}" method="post">-->
-<!--                                <Button type="submit" class="btn btn-primary btn-sm">-->
-<!--							<span class="fas fa-sign-out-alt fa-1x" aria-hidden="true"-->
-<!--                            >Logout</span>-->
-<!--                                </Button>-->
-<!--                            </form>-->
-<!--                        </li>-->
-<!--                    </th:block>-->
-<!--                </ul>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </nav>-->
-<!--</div>-->
-<!--Main Content holder-->
 <main class="main-content" layout:fragment="content" >
 </main>
-<!--Footer-->
-<!--<footer>-->
-<!--    <div class="container">-->
-<!--        <div class="row justify-content-center">-->
-<!--            <div class="col">-->
-<!--                <p class="text-right">&copy;STU - Service To You</p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</footer>-->
 <div layout:fragment="scripts">
 
     <script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
