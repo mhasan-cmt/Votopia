@@ -43,7 +43,7 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String phone;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private VoterIdentification voterIdentification;
 
     @Lob
@@ -112,5 +112,11 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+    public void setVoterIdentification(VoterIdentification voterIdentification) {
+        this.voterIdentification = voterIdentification;
+        if (voterIdentification != null) {
+            voterIdentification.setUser(this);
+        }
     }
 }

@@ -15,5 +15,6 @@ public class VoterIdentification {
     @Column(name = "id_number")
     private String idNumber;
     @OneToOne
+    @JoinColumn(name = "user_id")
     private User user;
 }

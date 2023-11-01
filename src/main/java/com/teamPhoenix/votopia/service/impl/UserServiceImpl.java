@@ -4,10 +4,12 @@ import com.teamPhoenix.votopia.dto.UserDto;
 import com.teamPhoenix.votopia.entity.Role;
 import com.teamPhoenix.votopia.entity.RoleName;
 import com.teamPhoenix.votopia.entity.User;
+import com.teamPhoenix.votopia.entity.VoterIdentification;
 import com.teamPhoenix.votopia.exceptions.CanNotConvertImageToBase64Exception;
 import com.teamPhoenix.votopia.repository.RoleRepository;
 import com.teamPhoenix.votopia.repository.UserRepository;
 import com.teamPhoenix.votopia.service.UserService;
+import com.teamPhoenix.votopia.service.VoterIdentificationService;
 import com.teamPhoenix.votopia.util.ImageUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,6 +23,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
+    private final VoterIdentificationService voterIdentificationService;
     @Override
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
@@ -38,6 +41,8 @@ public class UserServiceImpl implements UserService {
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
         user.setPhone(userDto.getPhone());
+        VoterIdentification voterIdentification = voterIdentificationService.findByIdNumber(userDto.getVoterIdentification());
+        user.setVoterIdentification(voterIdentification);
         if (userDto.getRole()==null){
             user.setRoles(List.of(roleRepository.findByName(RoleName.ROLE_USER)));
         }else{

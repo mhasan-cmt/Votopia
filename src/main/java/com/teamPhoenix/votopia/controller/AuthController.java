@@ -2,7 +2,9 @@ package com.teamPhoenix.votopia.controller;
 
 import com.teamPhoenix.votopia.dto.UserDto;
 import com.teamPhoenix.votopia.entity.User;
+import com.teamPhoenix.votopia.entity.VoterIdentification;
 import com.teamPhoenix.votopia.service.UserService;
+import com.teamPhoenix.votopia.service.VoterIdentificationService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -19,6 +21,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class AuthController {
 
     private final UserService userService;
+
+    private final VoterIdentificationService voterIdentificationService;
 
     @GetMapping("/")
     public String home(Model model, Authentication authentication, @AuthenticationPrincipal User userDetails) {
@@ -48,6 +52,8 @@ public class AuthController {
             result.rejectValue("email", null, "There is already an account registered with that email");
         } else if (!user.getPassword().equals(user.getConfirmPassword())) {
             result.rejectValue("confirmPassword", null, "Passwords do not match");
+        } else if (!voterIdentificationService.validateIdentificationNumber(user.getVoterIdentification())) {
+            result.rejectValue("voterIdentification", null, "Invalid voter identification number");
         }
         if (result.hasErrors()) {
             model.addAttribute("user", user);
