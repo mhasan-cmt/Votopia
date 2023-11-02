@@ -6,6 +6,8 @@ import com.teamPhoenix.votopia.service.VoterIdentificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class VoterIdentificationServiceImpl implements VoterIdentificationService {
@@ -19,5 +21,10 @@ public class VoterIdentificationServiceImpl implements VoterIdentificationServic
     @Override
     public VoterIdentification findByIdNumber(String voterIdentification) {
         return voterIdentificationRepository.findByIdNumber(voterIdentification);
+    }
+
+    @Override
+    public List<VoterIdentification> getAll() {
+        return voterIdentificationRepository.findAll();
     }
 }

@@ -84,6 +84,12 @@
                             <span>End Voting Session</span>
                         </a>
                     </li>
+                    <li>
+                        <a th:href="@{/voter-identification}">
+                            <span class="las la-id-card"></span>
+                            <span>Voter Identifications</span>
+                        </a>
+                    </li>
                 </th:block>
                 <li>
                     <a href="Notification.html">
@@ -119,6 +125,9 @@
     <script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
     <script th:src="@{/webjars/jquery/3.6.4/jquery.min.js}"></script>
     <script th:src="@{/webjars/datatables/1.10.19/js/jquery.dataTables.min.js}"></script>
+    <script>
+        $('#verifications-table').DataTable();
+    </script>
 </div>
 </body>
 </html>

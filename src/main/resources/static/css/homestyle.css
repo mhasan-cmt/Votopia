@@ -575,3 +575,16 @@
     border-radius: 50%;
     margin-right: 10px;
 }
+.dataTables_wrapper .dataTables_filter label {
+  position: relative;
+  display: inline;
+}
+.dataTables_wrapper .dataTables_filter input{
+  margin: 0;
+}
+.dataTables_wrapper .dataTables_filter{
+  padding-right: .5rem;
+}
+.dataTables_wrapper .dataTables_length{
+  display: none;
+}

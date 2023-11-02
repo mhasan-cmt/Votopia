@@ -17,4 +17,10 @@ public class VoterIdentification {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
+    @Transient
+    private Boolean isRegistered;
+    public Boolean getIsRegistered() {
+        return this.user != null;
+    }
+
 }

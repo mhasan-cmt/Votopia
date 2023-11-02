@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
+<body>
+<div layout:fragment="content">
+  <div class="my-2">
+    <button class="btn btn-success">Add <span class="fa fa-square-plus ms-2"></span></button>
+  </div>
+  <div class="bg-light d-flex flex-column">
+    <table class="table table-hover" id="verifications-table">
+      <thead>
+      <tr class="bg-dark text-light">
+        <th scope="col">SL</th>
+        <th scope="col">Identification Number</th>
+        <th scope="col">Registered</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="v, iStat :${voterIdentificationList}">
+        <td th:text="${iStat.index + 1}"></td>
+        <td th:text="${v.getIdNumber()}"></td>
+        <td>
+          <span th:if="${v.getIsRegistered()}" class="fa fa-check-circle text-success"></span>
+          <span th:unless="${v.getIsRegistered()}" class="fa fa-xmark-circle text-danger"></span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</body>
