@@ -21,6 +21,7 @@
     />
     <link rel="stylesheet"
           href="fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" th:href="@{/webjars/sweetalert2/11.6.15/dist/sweetalert2.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/styles.css}"/>
     <link rel="stylesheet" th:href="@{/css/homestyle.css}"/>
 </head>
@@ -125,9 +126,7 @@
     <script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
     <script th:src="@{/webjars/jquery/3.6.4/jquery.min.js}"></script>
     <script th:src="@{/webjars/datatables/1.10.19/js/jquery.dataTables.min.js}"></script>
-    <script>
-        $('#verifications-table').DataTable();
-    </script>
+    <script th:src="@{webjars/sweetalert2/11.6.15/dist/sweetalert2.all.min.js}"></script>
 </div>
 </body>
 </html>

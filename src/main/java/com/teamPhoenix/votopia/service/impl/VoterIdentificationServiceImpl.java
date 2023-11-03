@@ -27,4 +27,9 @@ public class VoterIdentificationServiceImpl implements VoterIdentificationServic
     public List<VoterIdentification> getAll() {
         return voterIdentificationRepository.findAll();
     }
+
+    @Override
+    public VoterIdentification addVoterIdentification(VoterIdentification voterIdentification) {
+        return voterIdentificationRepository.save(voterIdentification);
+    }
 }

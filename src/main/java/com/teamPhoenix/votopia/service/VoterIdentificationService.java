@@ -10,4 +10,6 @@ public interface VoterIdentificationService {
     VoterIdentification findByIdNumber(String voterIdentification);
 
     List<VoterIdentification> getAll();
+
+    VoterIdentification addVoterIdentification(VoterIdentification voterIdentification);
 }

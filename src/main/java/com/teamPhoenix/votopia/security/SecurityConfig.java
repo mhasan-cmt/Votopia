@@ -24,6 +24,7 @@ public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
     private final String[] whiteListUrls = {"/login", "/register", "/register/save"};
+    private final String[] adminURLS ={"/api/voter-verification"};
 
     /**
      * This method is used to configure the password encoder.
@@ -48,6 +49,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) ->
                         authorize
                                 .requestMatchers(whiteListUrls).permitAll()
+                                .requestMatchers(adminURLS).hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .formLogin(
@@ -62,7 +64,8 @@ public class SecurityConfig {
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                 .permitAll()
                 )
-                .csrf().disable();
+                .csrf().disable()
+                .cors().disable();
 
         return http.build();
     }
