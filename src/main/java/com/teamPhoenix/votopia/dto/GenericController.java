@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 public abstract class GenericController {
 
     protected ResponseEntity<APICustomResponse> createResponse(Object data, String message, HttpStatus status) {
-        System.out.println(data);
         return ResponseEntity.status(status)
                 .body(APICustomResponse.builder()
                         .timeStamp(LocalDateTime.now())
