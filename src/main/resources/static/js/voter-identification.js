@@ -22,7 +22,7 @@ const submitAddForm = () => {
                         title: 'Success!',
                         text: data.message,
                         icon: 'success',
-                        confirmButtonText: 'Cool'
+                        confirmButtonText: 'Ok'
                     })
                     loadVoterIdentifications();
                 }else{
@@ -30,14 +30,17 @@ const submitAddForm = () => {
                         title: 'Error!',
                         text: data.message,
                         icon: 'error',
-                        confirmButtonText: 'Cool'
+                        confirmButtonText: 'ok'
                     })
                 }
             },
-            failure: function (errMsg) {
+            error: function (errMsg) {
+                const errors = errMsg.responseJSON.data;
+                const errorDetails =Object.entries(errors).map(([field, message]) => `${field}: ${message}`)
+                    .join('<br>');
                 Swal.fire({
                     title: 'Error!',
-                    text: 'Voter Id not added',
+                    text: errorDetails,
                     icon: 'error',
                     confirmButtonText: 'Cool'
                 })
@@ -85,6 +88,9 @@ const loadVoterIdentifications = () => {
 };
 addVoterIdButton.addEventListener("click", () => {
     submitAddForm();
+});
+voterAddModal.on('hidden.bs.modal', function () {
+    voterIdInput.value = "";
 });
 
 $('document').ready(function () {
