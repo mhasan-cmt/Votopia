@@ -24,7 +24,7 @@ public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
     private final String[] whiteListUrls = {"/login", "/register", "/register/save"};
-    private final String[] adminURLS ={"/api/voter-verification", "/start-voting-session"};
+    private final String[] adminURLS ={"/api/voter-verification", "/start-voting-session", "/api/election"};
 
     /**
      * This method is used to configure the password encoder.

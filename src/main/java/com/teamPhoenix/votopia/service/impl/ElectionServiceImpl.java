@@ -26,6 +26,8 @@ public class ElectionServiceImpl implements ElectionService {
             election.setStatus(Status.Active);
         }else if (election.getElectionStartDate().isAfter(election.getElectionEndDate())){
             return null;
+        }else if (election.getElectionStartDate().isBefore(LocalDateTime.now())){
+            return null;
         }
         return electionRepository.save(election);
     }

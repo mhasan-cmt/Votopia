@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
+<body>
+<div layout:fragment="content">
+    <div class="col-md-12 my-3 bg-light py-2 d-flex align-items-center">
+        <a class="btn btn-success" th:href="@{/election}"><i class="las la-arrow-left"></i></a>
+        <h1 class="h2 ms-4">Create Election</h1>
+    </div>
+    <div class="row">
+        <form class="register-form" id="add-election-form">
+            <div class="col-md-6 offset-md-2">
+                <p>Election Name</p>
+            </div>
+            <div class="form-group col-md-6 offset-md-2">
+                <label for="electionName"><i
+                        class="las la-person-booth material-icons-name"></i></label> <input
+                    type="text" name="electionName" placeholder="Election Name" id="electionName" required/>
+            </div>
+            <div class="col-md-6 offset-md-2">
+                <p>Election Start</p>
+            </div>
+            <div class="form-group col-md-6 offset-md-2">
+                <label for="electionStartDate"><i
+                        class="las la-hourglass-start material-icons-name"></i></label> <input
+                    type="datetime-local" name="electionStartDate" placeholder="Election Start" id="electionStartDate" required/>
+            </div>
+            <div class="col-md-6 offset-md-2">
+                <p>Election End</p>
+            </div>
+            <div class="form-group col-md-6 offset-md-2">
+                <label for="electionEndDate"><i
+                        class="las la-hourglass-end material-icons-name"></i></label> <input
+                    type="datetime-local" name="electionEndDate" placeholder="Election End" id="electionEndDate" required/>
+            </div>
+            <div class="col-md-6 offset-md-2">
+            <button type="submit" class="btn btn-success" id="add-election-submit">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div layout:fragment="scripts">
+    <script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+    <script th:src="@{/webjars/jquery/3.6.4/jquery.min.js}"></script>
+    <script th:src="@{/webjars/datatables/1.10.19/js/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/webjars/sweetalert2/11.6.15/dist/sweetalert2.all.min.js}"></script>
+    <script th:src="@{/js/create-election.js}"></script>
+</div>
+</body>
+</html>

@@ -34,7 +34,7 @@ public class ElectionController extends GenericController {
         Election election1=electionService.addElection(election);
 
         if (election1==null)
-            return createResponse(null,"Election not added", NOT_FOUND);
+            return createResponse(null,"Election not added", MULTI_STATUS);
 
         return createResponse(election1, "Election added successfully", CREATED);
     }

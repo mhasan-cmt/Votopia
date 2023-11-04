@@ -23,8 +23,15 @@ public class PageController {
         return "voter-identification";
     }
 
-    @GetMapping("/start-voting-session")
+    @GetMapping("/election")
     public String loadStartVotingSessionPage(){
-        return "start-voting-session";
+        return "election";
     }
+
+    @GetMapping("/election/create")
+    public String loadCreateElectionPage(){
+        return "create-election";
+    }
+
+
 }

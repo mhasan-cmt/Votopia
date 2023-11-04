@@ -49,7 +49,6 @@ const submitAddForm = () => {
     }
 }
 const loadVoterIdentifications = () => {
-    //ajax get call
     $.get(url, function (data) {
         if (data.statusCode == 200 && data.data.length > 0) {
             const verificationsTable = document.getElementById("verifications-table");

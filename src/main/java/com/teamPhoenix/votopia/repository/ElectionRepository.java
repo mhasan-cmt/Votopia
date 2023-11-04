@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface ElectionRepository extends JpaRepository<Election, Long> {
-    @Query(value = "select * from election", nativeQuery = true)
+    @Query(value = "select * from elections", nativeQuery = true)
     List<Election> getAllElections();
 }

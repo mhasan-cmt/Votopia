@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
+<body>
+<div layout:fragment="content" class="main-content">
+    <div class="row" id="elections-wrapper">
+        <div class="col-md-12 my-3 bg-light py-2 d-flex align-items-center">
+            <a class="btn btn-success" th:href="@{/election/create}">New <i class="zmdi zmdi-plus-circle ms-2"></i></a>
+            <h1 class="h2 ms-4" id="ongoing-election-status">Elections</h1>
+        </div>
+    </div>
+</div>
+<div layout:fragment="scripts">
+    <script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+    <script th:src="@{/webjars/jquery/3.6.4/jquery.min.js}"></script>
+    <script th:src="@{/webjars/datatables/1.10.19/js/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/webjars/sweetalert2/11.6.15/dist/sweetalert2.all.min.js}"></script>
+    <script th:src="@{/js/election.js}"></script>
+</div>
+</body>
