@@ -6,38 +6,42 @@
 <div layout:fragment="content">
 
   <!-- Add Modal -->
-  <div class="modal fade" id="add-voter-id-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="add-post-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add New Voter Identification</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Add New Post</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <form class="register-form">
           <div class="modal-body">
             <div class="form-group">
-              <label for="voter-id"><i class="zmdi zmdi-account-box-mail material-icons-name"></i></label> <input
-                    type="text" name="voter-id" id="voter-id" required placeholder="Enter a Voter Identification Number"/>
+              <label for="post_name"><i class="zmdi zmdi-account-box-mail material-icons-name"></i></label> <input
+                    type="text" name="post_name" id="post_name" required placeholder="Enter a Post Name"/>
+            </div>
+            <div class="form-group">
+              <label for="post_description"><i class="zmdi zmdi-account-box-mail material-icons-name"></i></label> <input
+                    type="text" name="post_description" id="post_description" required placeholder="Enter a Post Description"/>
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" id="voter-add-submit" class="btn btn-primary">Save changes</button>
+            <button type="button" id="post-add-submit" class="btn btn-primary">Save changes</button>
           </div>
         </form>
       </div>
     </div>
   </div>
   <div class="my-2">
-    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-voter-id-modal">New <span class="fa fa-square-plus ms-2"></span></button>
+    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-post-modal">New <span class="fa fa-square-plus ms-2"></span></button>
   </div>
   <div class="bg-light d-flex flex-column">
-    <table class="table table-hover" id="verifications-table">
+    <table class="table table-hover" id="posts-table">
       <thead>
       <tr class="bg-dark text-light">
         <th scope="col">SL</th>
-        <th scope="col">Identification Number</th>
-        <th scope="col">Registered</th>
+        <th scope="col">Post Name</th>
+        <th scope="col">Post Description</th>
       </tr>
       </thead>
       <tbody></tbody>
@@ -49,6 +53,6 @@
   <script th:src="@{/webjars/jquery/3.6.4/jquery.min.js}"></script>
   <script th:src="@{/webjars/datatables/1.10.19/js/jquery.dataTables.min.js}"></script>
   <script th:src="@{/webjars/sweetalert2/11.6.15/dist/sweetalert2.all.min.js}"></script>
-  <script th:src="@{/js/voter-identification.js}"></script>
+  <script th:src="@{/js/create_post.js}"></script>
 </div>
 </body>

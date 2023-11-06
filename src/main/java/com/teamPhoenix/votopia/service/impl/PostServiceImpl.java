@@ -19,6 +19,9 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post addPost(Post post) {
+        Post exists = postRepository.findByPostNameIgnoreCase(post.getPostName());
+        if (exists != null)
+            return null;
         return postRepository.save(post);
     }
 }

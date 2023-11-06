@@ -32,7 +32,7 @@ public class PostController extends GenericController {
     public ResponseEntity<APICustomResponse> addPost(@RequestBody Post post){
         Post post1=postService.addPost(post);
         if (post1==null)
-            return createResponse(null,"Post not added", NOT_FOUND);
+            return createResponse(null,"Post already exists", NOT_FOUND);
 
         return createResponse(post1, "Post added successfully", HttpStatus.CREATED);
     }

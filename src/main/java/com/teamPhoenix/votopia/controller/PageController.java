@@ -32,6 +32,10 @@ public class PageController {
     public String loadCreateElectionPage(){
         return "create-election";
     }
+    @GetMapping("/post")
+    public String loadCreatePostPage(){
+        return "create-post";
+    }
 
 
 }
