@@ -1,5 +1,6 @@
 package com.teamPhoenix.votopia.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -29,9 +30,18 @@ public class Election {
     @Column(name = "election_end")
     @NotNull(message = "Election end date cannot be empty")
     private LocalDateTime electionEndDate;
-
-    @Column(name = "election_status")
-    @Enumerated(EnumType.STRING)
+    @Transient
     private Status status;
+    @JsonIgnore
+    public Status setStatus(){
+        if (LocalDateTime.now().isBefore(electionStartDate)){
+            this.status =  Status.Upcoming;
+        }else if (LocalDateTime.now().isAfter(electionEndDate)){
+            this.status= Status.Closed;
+        }else {
+            this.status = Status.Active;
+        }
+        return status;
+    }
 }
 

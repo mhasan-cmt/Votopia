@@ -8,6 +8,7 @@ const loadElections = () => {
                 let electionStartDate = election.electionStartDate;
                 let electionEndDate = election.electionEndDate;
                 let electionStatus = election.status;
+                console.log(election);
 
                 let cardDiv = $('<div>').addClass('col-md-3');
                 let card = $('<div>').addClass('card').css('width', '18rem');

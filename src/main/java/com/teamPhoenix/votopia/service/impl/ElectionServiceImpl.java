@@ -4,31 +4,28 @@ import com.teamPhoenix.votopia.entity.Election;
 import com.teamPhoenix.votopia.entity.Status;
 import com.teamPhoenix.votopia.repository.ElectionRepository;
 import com.teamPhoenix.votopia.service.ElectionService;
+import groovy.util.logging.Slf4j;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ElectionServiceImpl implements ElectionService {
     private final ElectionRepository electionRepository;
     @Override
     public List<Election> getAll() {
-        return electionRepository.getAllElections();
+        List<Election> elections=electionRepository.getAllElections();
+        elections.forEach(Election::setStatus);
+        return elections;
     }
 
     @Override
     public Election addElection(Election election) {
-        if (election.getElectionStartDate().isAfter(LocalDateTime.now())){
-            election.setStatus(Status.Upcoming);
-        }else if (election.getElectionEndDate().isBefore(LocalDateTime.now()) || election.getElectionEndDate().isEqual(LocalDateTime.now())) {
-            election.setStatus(Status.Active);
-        }else if (election.getElectionStartDate().isAfter(election.getElectionEndDate())){
-            return null;
-        }else if (election.getElectionStartDate().isBefore(LocalDateTime.now())){
-            return null;
-        }
         return electionRepository.save(election);
     }
 }
