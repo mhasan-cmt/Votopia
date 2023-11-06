@@ -6,7 +6,7 @@
 <div layout:fragment="content">
 
   <!-- Add Modal -->
-  <div class="modal fade" id="add-post-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="add-candidate-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
@@ -33,7 +33,7 @@
     </div>
   </div>
   <div class="my-2">
-    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-post-modal">New <span class="fa fa-square-plus ms-2"></span></button>
+    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-candidate-modal">New <span class="fa fa-square-plus ms-2"></span></button>
   </div>
   <div class="bg-light d-flex flex-column">
     <table class="table table-hover" id="posts-table">
@@ -53,6 +53,6 @@
   <script th:src="@{/webjars/jquery/3.6.4/jquery.min.js}"></script>
   <script th:src="@{/webjars/datatables/1.10.19/js/jquery.dataTables.min.js}"></script>
   <script th:src="@{/webjars/sweetalert2/11.6.15/dist/sweetalert2.all.min.js}"></script>
-  <script th:src="@{create-post.js}"></script>
+  <script th:src="@{create-candidate.js}"></script>
 </div>
 </body>
